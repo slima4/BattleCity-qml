@@ -5,6 +5,7 @@ Window {
     visible: true
     width: 480;
     height: 360;
+    color: "black";
 
     minimumHeight: height;
     minimumWidth: width;
@@ -12,16 +13,15 @@ Window {
     maximumWidth: width;
     title: qsTr("Battle city");
 
+    Board {
+        id: board
+    }
+
     MouseArea {
         anchors.fill: parent
         onClicked: {
             Qt.quit();
         }
-    }
-
-    Text {
-        text: qsTr("Hello World")
-        anchors.centerIn: parent
     }
 }
 
