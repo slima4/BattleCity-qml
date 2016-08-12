@@ -32,6 +32,11 @@ Rectangle {
 
     Component.onCompleted:
     {
+        update();
+    }
+
+    function update()
+    {
         for (var i = 0; i < Logic.board.length; ++i)
             for (var j = 0; j < Logic.board[i].length; ++j)
             {
