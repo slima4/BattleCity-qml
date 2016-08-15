@@ -32,7 +32,7 @@ Window {
 
     Component.onCompleted:
     {
-        player.move(Qt.point(4,0));
+        player.move(Qt.point(0,0));
     }
 
     Rectangle{
@@ -44,19 +44,19 @@ Window {
             switch(event.key)
             {
             case Qt.Key_Left:
-                pos.y -= 1;
+                pos.x -= 1;
                 console.log("left");
                 break;
             case Qt.Key_Right:
-                pos.y += 1;
+                pos.x += 1;
                 console.log("right");
                 break;
             case Qt.Key_Up:
-                pos.x -= 1;
+                pos.y -= 1;
                 console.log("up");
                 break;
             case Qt.Key_Down:
-                pos.x += 1;
+                pos.y += 1;
                 console.log("down");
             }
             player.move(pos);
