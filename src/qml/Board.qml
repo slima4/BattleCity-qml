@@ -40,7 +40,26 @@ Rectangle {
         for (var i = 0; i < Logic.board.length; ++i)
             for (var j = 0; j < Logic.board[i].length; ++j)
             {
-                grid.children[i*Logic.board[i].length + j].color = Logic.board[i][j] === 0 ? "#ccc0b2" :  Logic.board[i][j] === 1 ?"black" : "red";
+                var code = Logic.board[i][j];
+                var color = "white";
+                switch(code)
+                {
+                case 0:
+                    color = "#ccc0b2";
+                    break;
+                case 1:
+                    color = "black";
+                    break;
+                case 2:
+                    color = "red";
+                    break;
+                case 3:
+                    color = "grean";
+                    break;
+                default:
+                    break;
+                }
+                grid.children[i*Logic.board[i].length + j].color = color;
             }
     }
 }
