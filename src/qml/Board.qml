@@ -3,14 +3,14 @@ import QtQuick 2.0
 import "logic.js" as Logic
 
 Rectangle {
-    property int col: 12
-    property int row: 8
+    property int col: Logic.board[0].length;
+    property int row: Logic.board.length;
 
     anchors {
-        right: parent.right; rightMargin: 5
-        left: parent.left; leftMargin: 5
-        bottom: parent.bottom; bottomMargin: 5
-        top: parent.top; topMargin: 5
+        right: parent.right; rightMargin: 1
+        left: parent.left; leftMargin: 1
+        bottom: parent.bottom; bottomMargin: 1
+        top: parent.top; topMargin: 1
     }
     color: "#bbada0"
 

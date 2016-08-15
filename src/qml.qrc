@@ -4,5 +4,6 @@
         <file>qml/Board.qml</file>
         <file>qml/Tank.qml</file>
         <file>qml/logic.js</file>
+        <file>qml/Bullet.qml</file>
     </qresource>
 </RCC>

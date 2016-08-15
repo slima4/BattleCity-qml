@@ -32,7 +32,7 @@ Window {
 
     Component.onCompleted:
     {
-        player.move(Qt.point(0,0));
+        player.move(Qt.point(0,4));
     }
 
     Rectangle{
