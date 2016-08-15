@@ -15,6 +15,9 @@ Window {
     maximumWidth: width;
     title: qsTr("Battle city");
 
+    property var bulletArr: [];
+    property int direrct: Logic.directionType.Up;
+
     Board {
         id: board;
     }
@@ -44,7 +47,14 @@ Window {
         repeat: true;
         interval: 300; running: true;
         onTriggered: {
-            bullet.update();
+            for(var i = 0; i < bulletArr.length; ++i)
+            {
+//                if(!bulletArr[i].isEnabled){
+//                    bulletArr[i].destroy();
+//                    bulletArr.splice(i, 1);
+//                }
+                bulletArr[i].update();
+            }
             board.update();
         }
     }
@@ -55,31 +65,34 @@ Window {
             var pos = Qt.point(0,0);
             pos.x = player.pos.x;
             pos.y = player.pos.y;
-            bullet.pos = pos;
             switch(event.key)
             {
             case Qt.Key_Left:
                 pos.x -= 1;
-                bullet.direction = Logic.directionType.Left;
+                direrct = Logic.directionType.Left;
                 console.log("left");
                 break;
             case Qt.Key_Right:
-                bullet.direction = Logic.directionType.Right;
+                direrct = Logic.directionType.Right;
                 pos.x += 1;
                 console.log("right");
                 break;
             case Qt.Key_Up:
-                bullet.direction = Logic.directionType.Up;
+                direrct = Logic.directionType.Up;
                 pos.y -= 1;
                 console.log("up");
                 break;
             case Qt.Key_Down:
-                bullet.direction = Logic.directionType.Down;
+                direrct = Logic.directionType.Down;
                 pos.y += 1;
                 console.log("down");
                 break;
             case Qt.Key_Space:
-                bullet.isEnabled = true;
+                var component = Qt.createComponent("Bullet.qml");
+                var obj = component.createObject(parent);
+                obj.pos = pos;
+                obj.direction = direrct;
+                bulletArr.push(obj);
                 break;
             }
             player.move(pos);

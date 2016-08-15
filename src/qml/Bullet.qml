@@ -6,7 +6,7 @@ Rectangle {
 
     property point pos: Qt.point(10,0);
     property int size: 4;
-    property bool isEnabled: false;
+    property bool isEnabled: true;
     property int direction: Logic.directionType.Right;
 
     function update()
