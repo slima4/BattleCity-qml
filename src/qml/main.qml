@@ -22,7 +22,7 @@ Window {
         id: board;
     }
 
-    Tank {
+    Player {
         id: player;
     }
 
@@ -31,16 +31,6 @@ Window {
         onClicked: {
             Qt.quit();
         }
-    }
-
-    Component.onCompleted:
-    {
-        player.pos = Qt.point(0,0);
-        player.move(Logic.directionType.None);
-    }
-
-    Bullet {
-        id: bullet;
     }
 
     Timer {
@@ -59,19 +49,11 @@ Window {
             switch(event.key)
             {
             case Qt.Key_Left:
-                player.move(Logic.directionType.Left);
-                break;
             case Qt.Key_Right:
-                player.move(Logic.directionType.Right);
-                break;
             case Qt.Key_Up:
-                player.move(Logic.directionType.Up);
-                break;
             case Qt.Key_Down:
-                player.move(Logic.directionType.Down);
-                break;
             case Qt.Key_Space:
-                player.shoot();
+                player.move(event.key);
                 break;
             }
             board.update();
