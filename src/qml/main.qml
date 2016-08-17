@@ -16,7 +16,7 @@ Window {
     title: qsTr("Battle city");
 
     property var bulletArr: [];
-    property int direrct: Logic.directionType.Up;
+    property int direct: Logic.directionType.Up;
 
     Board {
         id: board;
@@ -35,7 +35,8 @@ Window {
 
     Component.onCompleted:
     {
-        player.move(Qt.point(0,4));
+        player.pos = Qt.point(0,0);
+        player.move(Logic.directionType.None);
     }
 
     Bullet {
@@ -47,14 +48,7 @@ Window {
         repeat: true;
         interval: 300; running: true;
         onTriggered: {
-            for(var i = 0; i < bulletArr.length; ++i)
-            {
-//                if(!bulletArr[i].isEnabled){
-//                    bulletArr[i].destroy();
-//                    bulletArr.splice(i, 1);
-//                }
-                bulletArr[i].update();
-            }
+            player.update();
             board.update();
         }
     }
@@ -62,40 +56,24 @@ Window {
     Rectangle {
         focus: true
         Keys.onPressed: {
-            var pos = Qt.point(0,0);
-            pos.x = player.pos.x;
-            pos.y = player.pos.y;
             switch(event.key)
             {
             case Qt.Key_Left:
-                pos.x -= 1;
-                direrct = Logic.directionType.Left;
-                console.log("left");
+                player.move(Logic.directionType.Left);
                 break;
             case Qt.Key_Right:
-                direrct = Logic.directionType.Right;
-                pos.x += 1;
-                console.log("right");
+                player.move(Logic.directionType.Right);
                 break;
             case Qt.Key_Up:
-                direrct = Logic.directionType.Up;
-                pos.y -= 1;
-                console.log("up");
+                player.move(Logic.directionType.Up);
                 break;
             case Qt.Key_Down:
-                direrct = Logic.directionType.Down;
-                pos.y += 1;
-                console.log("down");
+                player.move(Logic.directionType.Down);
                 break;
             case Qt.Key_Space:
-                var component = Qt.createComponent("Bullet.qml");
-                var obj = component.createObject(parent);
-                obj.pos = pos;
-                obj.direction = direrct;
-                bulletArr.push(obj);
+                player.shoot();
                 break;
             }
-            player.move(pos);
             board.update();
             event.accepted = true;
         }

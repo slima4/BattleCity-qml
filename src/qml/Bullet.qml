@@ -4,10 +4,12 @@ import "logic.js" as Logic
 
 Rectangle {
 
-    property point pos: Qt.point(10,0);
+    property point pos: Qt.point(0,0);
     property int size: 4;
     property bool isEnabled: true;
     property int direction: Logic.directionType.Right;
+
+    Component.onDestruction: console.log("Destruction")
 
     function update()
     {
@@ -54,7 +56,6 @@ Rectangle {
     function stop()
     {
         clean();
-//        pos = Qt.point(10,0);
         isEnabled = false;
     }
 
@@ -66,7 +67,6 @@ Rectangle {
             stop();
             return;
         }
-
         clean();
 
         pos.x += x;
