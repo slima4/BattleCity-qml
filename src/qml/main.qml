@@ -26,6 +26,10 @@ Window {
         id: player;
     }
 
+    Enemy {
+        id: enemy;
+    }
+
     MouseArea {
         anchors.fill: parent
         onClicked: {

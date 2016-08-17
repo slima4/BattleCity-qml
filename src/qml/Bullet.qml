@@ -3,11 +3,11 @@ import QtQuick 2.0
 import "logic.js" as Logic
 
 Rectangle {
-
+    property int id: 4;
     property point pos: Qt.point(0,0);
     property int size: 4;
     property bool isEnabled: true;
-    property int direction: Logic.directionType.Right;
+    property int direction: Logic.directionType.Down;
 
     Component.onDestruction: console.log("Destruction")
 
@@ -78,9 +78,19 @@ Rectangle {
                 stop();
                 return;
             }
+            else if( Logic.board[pos.y][pos.x] === 3 || Logic.board[pos.y][pos.x+2] === 3) // destroy block
+            {
+                stop();
+                return;
+            }
         }
         else if (direction === Logic.directionType.Left || direction === Logic.directionType.Right) {
             if( Logic.board[pos.y][pos.x] === 1 || Logic.board[pos.y+2][pos.x] === 1) // destroy block
+            {
+                stop();
+                return;
+            }
+            else if( Logic.board[pos.y][pos.x] === 3 || Logic.board[pos.y+2][pos.x] === 3) // destroy block
             {
                 stop();
                 return;
@@ -94,11 +104,11 @@ Rectangle {
             {
             case Logic.directionType.Left:
             case Logic.directionType.Right:
-                Logic.board[pos.y+i][pos.x] = 3;
+                Logic.board[pos.y+i][pos.x] = id;
                 break;
             case Logic.directionType.Up:
             case Logic.directionType.Down:
-                Logic.board[pos.y][pos.x+i] = 3;
+                Logic.board[pos.y][pos.x+i] = id;
                 break;
             }
         }

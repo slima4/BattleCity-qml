@@ -29,7 +29,7 @@ Rectangle {
             obj.pos.y -= 1;
             break;
         case Logic.directionType.Down:
-            obj.pos.y += size.heigth;
+            obj.pos.y += size.height;
             break;
         }
     }

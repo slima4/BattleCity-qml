@@ -54,8 +54,10 @@ Rectangle {
                     color = "red";
                     break;
                 case 3:
-                    color = "grean";
+                    color = "green";
                     break;
+                case 4:
+                    color = "blue"
                 default:
                     break;
                 }
