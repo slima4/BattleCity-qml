@@ -53,6 +53,21 @@ Rectangle {
         }
     }
 
+    function destroyTank()
+    {
+        for(var i = 0; i < Logic.enemyList.length; ++i)
+        {
+            if( Logic.enemyList[i].hitTheTarget(pos, direction) )
+            {
+                Logic.enemyList[i].clean();
+                Logic.enemyList[i].destroy();
+                Logic.enemyList.splice(i, 1);
+                stop();
+                break;
+            }
+        }
+    }
+
     function stop()
     {
         clean();
@@ -72,27 +87,28 @@ Rectangle {
         pos.x += x;
         pos.y += y;
 
+
         if (direction === Logic.directionType.Up || direction === Logic.directionType.Down){
-            if( Logic.board[pos.y][pos.x] === 1 || Logic.board[pos.y][pos.x+2] === 1) // destroy block
+            if( Logic.board[pos.y][pos.x] === 1 || Logic.board[pos.y][pos.x+3] === 1) // destroy block
             {
                 stop();
                 return;
             }
-            else if( Logic.board[pos.y][pos.x] === 3 || Logic.board[pos.y][pos.x+2] === 3) // destroy block
+            else if( Logic.board[pos.y][pos.x] === 2 || Logic.board[pos.y][pos.x+3] === 2) // destroy tank
             {
-                stop();
+                destroyTank();
                 return;
             }
         }
         else if (direction === Logic.directionType.Left || direction === Logic.directionType.Right) {
-            if( Logic.board[pos.y][pos.x] === 1 || Logic.board[pos.y+2][pos.x] === 1) // destroy block
+            if( Logic.board[pos.y][pos.x] === 1 || Logic.board[pos.y+3][pos.x] === 1) // destroy block
             {
                 stop();
                 return;
             }
-            else if( Logic.board[pos.y][pos.x] === 3 || Logic.board[pos.y+2][pos.x] === 3) // destroy block
+            else if( Logic.board[pos.y][pos.x] === 2 || Logic.board[pos.y+3][pos.x] === 2) // destroy tank
             {
-                stop();
+                destroyTank();
                 return;
             }
         }

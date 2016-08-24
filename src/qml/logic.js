@@ -31,6 +31,22 @@ var board = [[0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0],
 //             [0,0,0,0,0,0,0,0,0,0,0,0],
 //             [0,0,0,0,0,0,0,0,0,0,0,0]];
 
+var enemyList = [];
+var bulletList = [];
+
+function createEnemy(pos, parent)
+{
+    var component = Qt.createComponent("Enemy.qml");
+    var enemy = component.createObject(parent);
+    enemy.position(pos);
+    enemyList.push(enemy);
+}
+
+function CreateBullet(pos, parent)
+{
+
+}
+
 function func() {
 
 }

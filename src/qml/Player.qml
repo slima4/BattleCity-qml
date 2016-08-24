@@ -14,7 +14,7 @@ Rectangle {
 
     Component.onCompleted:
     {
-        player.pos = Qt.point(0,0);
+        player.pos = Qt.point(16,8);
         player.move(Logic.directionType.None);
     }
 

@@ -47,6 +47,17 @@ Rectangle {
         }
     }
 
+    function clean()
+    {
+        var widht = pos.x + size.width;
+        var height = pos.y + size.height;
+        // clean old tank position
+        for (var i = pos.y; i < height; ++i) {
+            for (var j = pos.x; j < widht; ++j) {
+                Logic.board[i][j] = 0;
+            }
+        }
+    }
     function move( direct )
     {
         direction = direct;
@@ -85,15 +96,7 @@ Rectangle {
             }
         }
 
-        widht = pos.x + size.width;
-        height = pos.y + size.height;
-        // clean old tank position
-        for (i = pos.y; i < height; ++i) {
-            for (j = pos.x; j < widht; ++j) {
-                Logic.board[i][j] = 0;
-            }
-        }
-
+        clean();
 
         pos = m;
         widht = pos.x + size.width;
