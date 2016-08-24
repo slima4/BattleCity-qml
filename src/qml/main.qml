@@ -16,17 +16,7 @@ Window {
     maximumWidth: width;
     title: qsTr("Battle city");
 
-//    property var bulletArr: [];
     property int direct: Logic.directionType.Up;
-
-//    property list<Rectangle> objList: [
-//        Player {
-//            id: player;
-//        },
-//        Enemy {
-//            id: enemy;
-//        }
-//    ]
 
     Board {
         id: board;
@@ -39,7 +29,7 @@ Window {
     Component.onCompleted:
     {
         Logic.createEnemy(Qt.point(8,8), window);
-//        Logic.createEnemy(Qt.point(0,5), window);
+        Logic.createEnemy(Qt.point(0,5), window);
     }
 
     MouseArea {

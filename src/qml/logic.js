@@ -38,6 +38,7 @@ function createEnemy(pos, parent)
 {
     var component = Qt.createComponent("Enemy.qml");
     var enemy = component.createObject(parent);
+    enemy.setId(2);
     enemy.position(pos);
     enemyList.push(enemy);
 }

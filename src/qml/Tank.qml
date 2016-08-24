@@ -10,6 +10,14 @@ Rectangle {
     property var bulletArr: [];
     color: "red";
 
+    Component.onDestruction:
+    {
+        for(var i = 0; i < bulletArr.length; ++i)
+        {
+            bulletArr[i].destroy();
+        }
+    }
+
     function shoot()
     {
         var component = Qt.createComponent("Bullet.qml");

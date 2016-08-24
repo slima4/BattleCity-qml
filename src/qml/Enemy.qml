@@ -7,36 +7,39 @@ Rectangle {
     color: "green";
 
     Tank {
-        id: enemy;
+        id: tank;
+    }
+
+    function setId(id)
+    {
+        tank.id = id;
     }
 
     function position(pos)
     {
-        enemy.pos = pos;
-        enemy.move(Logic.directionType.None);
+        tank.pos = pos;
+        tank.move(Logic.directionType.None);
     }
 
     function update()
     {
-        enemy.update();
+        tank.update();
     }
 
 
     function hitTheTarget(bullet, dir)
     {
-        console.log(bullet.x + ":" + (enemy.pos.x + 3));
-
         switch(dir)
         {
         case Logic.directionType.Up:
         case Logic.directionType.Down:
-            if(bullet.x + 3 >= enemy.pos.x && bullet.x <= enemy.pos.x + 3 && bullet.y >= enemy.pos.y && bullet.y <= enemy.pos.y + 3){
+            if(bullet.x + 3 >= tank.pos.x && bullet.x <= tank.pos.x + 3 && bullet.y >= tank.pos.y && bullet.y <= tank.pos.y + 3){
                 return true;
             }
             break;
         case Logic.directionType.Left:
         case Logic.directionType.Right:
-            if(bullet.x >= enemy.pos.x && bullet.x <= enemy.pos.x + 3 && bullet.y + 3 >= enemy.pos.y && bullet.y <= enemy.pos.y + 3){
+            if(bullet.x >= tank.pos.x && bullet.x <= tank.pos.x + 3 && bullet.y + 3 >= tank.pos.y && bullet.y <= tank.pos.y + 3){
                 return true;
             }
             break;
@@ -49,7 +52,35 @@ Rectangle {
 
     function clean()
     {
-        enemy.clean();
+        tank.clean();
+    }
+
+    Timer {
+        id: tankMove;
+        repeat: true;
+        interval: 500; running: true;
+        onTriggered: {
+            rndMove();
+            rndShoot();
+        }
+    }
+
+    property int repitCount: 0;
+    function rndMove()
+    {
+        if(repitCount === 0)
+        {
+            repitCount = Math.floor(Math.random() * (6-1)) + 1;
+            tank.direction = Math.floor(Math.random() * 5);
+        }
+        --repitCount;
+        tank.move(tank.direction);
+    }
+
+    function rndShoot()
+    {
+        if(Math.floor(Math.random() * 3) === 1)
+            tank.shoot();
     }
 
     Component.onCompleted:

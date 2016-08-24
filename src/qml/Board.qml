@@ -51,13 +51,14 @@ Rectangle {
                     color = "black";
                     break;
                 case 2:
-                    color = "red";
+                    color = "green";
                     break;
                 case 3:
-                    color = "green";
+                    color = "red";
                     break;
                 case 4:
                     color = "blue"
+                    break;
                 default:
                     break;
                 }
