@@ -48,7 +48,6 @@ Rectangle {
                 break;
             case Logic.directionType.Up:
             case Logic.directionType.Down:
-                console.log(pos.y + ":" + (pos.x + i));
                 if(pos.y < Logic.board.length && pos.y >= 0)
                     Logic.board[pos.y][pos.x+i] = 0;
                 break;

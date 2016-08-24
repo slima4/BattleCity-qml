@@ -58,7 +58,7 @@ Rectangle {
     Timer {
         id: tankMove;
         repeat: true;
-        interval: 500; running: false;
+        interval: 500; running: true;
         onTriggered: {
             rndMove();
             rndShoot();
