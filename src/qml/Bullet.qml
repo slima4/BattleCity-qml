@@ -43,11 +43,14 @@ Rectangle {
             {
             case Logic.directionType.Left:
             case Logic.directionType.Right:
-                Logic.board[pos.y+i][pos.x] = 0;
+                if(pos.x < Logic.board[0].length && pos.x >= 0)
+                    Logic.board[pos.y+i][pos.x] = 0;
                 break;
             case Logic.directionType.Up:
             case Logic.directionType.Down:
-                Logic.board[pos.y][pos.x+i] = 0;
+                console.log(pos.y + ":" + (pos.x + i));
+                if(pos.y < Logic.board.length && pos.y >= 0)
+                    Logic.board[pos.y][pos.x+i] = 0;
                 break;
             }
         }
